@@ -11,7 +11,7 @@ const Manager = require("./lib/Manager");
 
 
 //initial propmts to manager info
-function managerInput (managerInfo) {
+function managerInput () {
     return inquirer.prompt ([
             {
                 name: 'name',
@@ -34,14 +34,14 @@ function managerInput (managerInfo) {
                 type: 'input',
             },
         ])
-        .then(managerInfo => {
+        .then(employeeInfo => {
             let {
                 name,
                 employeeId,
                 email,
                 officeNum,
-            } = managerInfo;
-            console.log(managerInfo);
+            } = employeeInfo;
+            console.log(employeeInfo);
         })
     };
 
