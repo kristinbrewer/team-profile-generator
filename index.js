@@ -34,23 +34,93 @@ function managerInput () {
                 type: 'input',
             },
         ])
+        .then(managerInfo => {
+            let {
+                name,
+                employeeId,
+                email,
+                officeNum,
+            } = managerInfo;
+            console.log(managerInfo);
+        })
+    };
+//providing menu for engineer/intern 
+const newEmployeeInfo = () => {
+    return inquirer.prompt ([
+           { name: 'jobTitle',
+            message: 'For managers: What is your name?',
+            type: 'list',
+            choices: ["Engineer", "Intern"], 
+        },
+
+        {
+            name: 'name',
+            message: 'What is the name of your employee?',
+            type: 'input',
+        },
+        {
+            name: 'employeeId',
+            message: 'What is their employee ID?',
+            type: 'input',
+        },
+        {
+            name: 'email',
+            message: 'What is their employee email?',
+            type: 'input',
+        },
+        //adding information for engineer
+        {
+            when: (input) => input.jobTitle === "Engineer",
+            name: 'github',
+            message: 'What is their GitHub username?',
+            type: 'input',
+        },
+        //adding information for intern
+        {
+            when: (input) => input.jobTitle === "Intern",
+            name: 'school',
+            message: 'What is the name of their school?',
+            type: 'input',
+        },
+        {
+            name: 'addAnother',
+            message: 'Do you want to add another employee?',
+            type: 'confirm',
+            default: false
+        },
+         ])
+
         .then(employeeInfo => {
             let {
                 name,
                 employeeId,
                 email,
                 officeNum,
+                github,
+                school,
+                addAnother
             } = employeeInfo;
+            
             console.log(employeeInfo);
         })
-    };
 
 
         
-        //initializes app order
-function init() {
-    managerInput()
+        }
+
+
+//call to write file
+function writeFile(html) {
+    fs.writeFile('./dist/index.html', html, (err) => {
+       err 
+       ? console.error(err)
+       : console.log('done');
+    });
+}
+        
+//initializes app order
+
+managerInput()
+    .then (newEmployeeInfo)
     //.then
- }
- //calls function
- init();
+ 
