@@ -1,11 +1,18 @@
+//node mods
 const inquirer = require('inquirer');
 const fs = require('fs');
+
+//generates HTML page
+//const genHTML = require('./src/genHTML')
 
 //calls scripts from library
 const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
+
+//array for input
+const inputData = [];
 
 
 
@@ -41,7 +48,9 @@ function managerInput () {
                 email,
                 officeNum,
             } = managerInfo;
-            console.log(managerInfo);
+            let manager = new Manager (name, employeeId, email, officeNum,)
+            inputData.push(manager)
+            console.log(manager);
         })
     };
 //providing menu for engineer/intern 
@@ -98,15 +107,26 @@ const newEmployeeInfo = () => {
                 officeNum,
                 github,
                 school,
-                addAnother
+                addAnother,
             } = employeeInfo;
+            var employee;
+
+            if (jobTitle === "Engineer") {
+                employee = new Engineer (name, id, email, github);
+                console.log(employee);
+            } else if (jobTitle === "Intern") {
+                employee = new Intern (name, id, email, school);
+                console.log(employee);
+            }
+            inputData.push(employee);
+            if (addAnother) {
+                return newEmployeeInfo(inputData);
+            } else {
+                return inputData;
+            }
             
-            console.log(employeeInfo);
         })
-
-
-        
-        }
+        };
 
 
 //call to write file
