@@ -6,7 +6,7 @@ const fs = require('fs');
 const generateHTML = require('./src/generateHTML')
 
 //calls scripts from library
-const Employee = require("./lib/Employee");
+//const Employee = require("./lib/Employee");
 const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const Manager = require("./lib/Manager");
@@ -26,7 +26,7 @@ function managerInput () {
                 type: 'input',
             },
             {
-                name: 'employeeId',
+                name: 'id',
                 message: 'What is your employee ID?',
                 type: 'input',
             },
@@ -44,11 +44,11 @@ function managerInput () {
         .then(managerInfo => {
             let {
                 name,
-                employeeId,
+                id,
                 email,
                 officeNumber,
             } = managerInfo;
-            let manager = new Manager (name, employeeId, email, officeNumber,)
+            let manager = new Manager (name, id, email, officeNumber,)
             inputData.push(manager)
             console.log(manager);
         })
@@ -68,7 +68,7 @@ const newEmployeeInfo = () => {
             type: 'input',
         },
         {
-            name: 'employeeId',
+            name: 'id',
             message: 'What is their employee ID?',
             type: 'input',
         },
@@ -102,7 +102,7 @@ const newEmployeeInfo = () => {
         .then(employeeInfo => {
             let {
                 name,
-                employeeId,
+                id,
                 email,
                 officeNumber,
                 github,
