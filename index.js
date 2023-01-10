@@ -3,7 +3,7 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 
 //generates HTML page
-//const genHTML = require('./src/genHTML')
+const generateHTML = require('./src/generateHTML')
 
 //calls scripts from library
 const Employee = require("./lib/Employee");
@@ -36,7 +36,7 @@ function managerInput () {
                 type: 'input',
             },
             {
-                name: 'officeNum',
+                name: 'officeNumber',
                 message: 'What is your office number?',
                 type: 'input',
             },
@@ -46,9 +46,9 @@ function managerInput () {
                 name,
                 employeeId,
                 email,
-                officeNum,
+                officeNumber,
             } = managerInfo;
-            let manager = new Manager (name, employeeId, email, officeNum,)
+            let manager = new Manager (name, employeeId, email, officeNumber,)
             inputData.push(manager)
             console.log(manager);
         })
@@ -104,7 +104,7 @@ const newEmployeeInfo = () => {
                 name,
                 employeeId,
                 email,
-                officeNum,
+                officeNumber,
                 github,
                 school,
                 addAnother,
@@ -142,5 +142,14 @@ function writeFile(html) {
 
 managerInput()
     .then (newEmployeeInfo)
-    //.then
+    .then (inputData => {
+        return generateHTML (inputData);
+    })
+    .then (pageHTML => {
+        return writeFile(pageHTML)
+    })
+    .catch (err => {
+        console.log(err);
+    
+    });
  
