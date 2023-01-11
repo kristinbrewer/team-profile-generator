@@ -1,16 +1,16 @@
-const inquirer = require('inquirer');
-const Manager = require("./lib/Manager");
+// using constructor 
+const Manager = require('../lib/Manager');
 
-jest.mock('inquirer');
-
-describe(Manager, () => {
-    describe("managerInput", () => {
-        it("asks for a manager name", async () => {
-            
-        }
-        it("confirms input is a string"), () => {
-            const str = "";
-            expect(result).toBe("");
-        }
-    })
+// creating manager object  
+test('creates an Manager object', () => {
+    const manager = new Manager('Kevin', 101, 'kevin@something.com', 'OSU', 2);
+    
+    expect(manager.officeNumber).toEqual(expect.any(Number));
 });
+
+// gets role from getRole()
+test('gets role of employee', () => {
+    const manager = new Manager('Kevin', 101, 'kevin@something.com', 'OSU');
+
+    expect(manager.getRole()).toEqual("Manager");
+}); 

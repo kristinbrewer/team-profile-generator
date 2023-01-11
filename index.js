@@ -104,6 +104,7 @@ const newEmployeeInfo = () => {
                 name,
                 id,
                 email,
+                jobTitle,
                 officeNumber,
                 github,
                 school,

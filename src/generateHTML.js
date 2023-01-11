@@ -67,14 +67,14 @@ for (let i = 0; i < data.length; i++) {
     if (role === 'Manager') {
         const managerCard = createManager(employee);
 
-        pageArray.push(managerCard);
+        cardArray.push(managerCard);
     }
 
     // call engineer function
     if (role === 'Engineer') {
         const engineerCard = createEngineer(employee);
 
-        pageArray.push(engineerCard);
+        cardArray.push(engineerCard);
     }
 
     // call intern function 
@@ -122,6 +122,7 @@ const createTeamPage = function (employeeCards) {
       </main>
       
   </body>
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   </html>
   `  ;
 };
